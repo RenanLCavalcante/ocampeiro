@@ -17,6 +17,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+import br.com.software.campeiro.confs.CustomerDateAndTimeDeserialize;
+
 @Entity
 public class Prato implements Serializable {
 	
@@ -31,9 +35,10 @@ public class Prato implements Serializable {
 	@ManyToMany
 	@JoinTable(name="pratos_itens", 
 	joinColumns = @JoinColumn(name="prato_id"), 
-	inverseJoinColumns = @JoinColumn(name="produto_estoque_id"))
-	private List<ProdutoEstoque> itensPrato;
+	inverseJoinColumns = @JoinColumn(name="item_id"))
+	private List<ItemPrato> itensPrato;
 	
+	@JsonDeserialize(using=CustomerDateAndTimeDeserialize.class)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataUltimaAtualizacao;
 	
@@ -53,14 +58,6 @@ public class Prato implements Serializable {
 
 	public void setNomePrato(String nomePrato) {
 		this.nomePrato = nomePrato;
-	}
-
-	public List<ProdutoEstoque> getItensPrato() {
-		return itensPrato;
-	}
-
-	public void setItensPrato(List<ProdutoEstoque> itensPrato) {
-		this.itensPrato = itensPrato;
 	}
 
 	public Date getDataUltimaAtualizacao() {
