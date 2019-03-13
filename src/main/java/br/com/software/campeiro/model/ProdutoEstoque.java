@@ -3,7 +3,6 @@ package br.com.software.campeiro.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -35,7 +34,7 @@ public class ProdutoEstoque implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private TipoQuantitativo tipoQuantitativo;
 	
-	private String quantidade; 
+	private double quantidade; 
 	
 	private boolean produtoPrato;
 	
@@ -73,11 +72,11 @@ public class ProdutoEstoque implements Serializable {
 		this.tipoQuantitativo = tipoQuantitativo;
 	}
 
-	public String getQuantidade() {
+	public double getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(String quantidade) {
+	public void setQuantidade(double quantidade) {
 		this.quantidade = quantidade;
 	}
 
